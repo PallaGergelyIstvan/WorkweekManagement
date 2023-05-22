@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".Settings">
 
     <TextView
             android:id="@+id/textViewStart1"
@@ -17,12 +17,11 @@
             android:textColor="@color/design_default_color_primary"
             android:textSize="30sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/textViewStart2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.679"/>
+            app:layout_constraintTop_toTopOf="@+id/linearLayout3"
+            app:layout_constraintVertical_bias="0.679" app:layout_constraintBottom_toBottomOf="@+id/linearLayout"/>
 
     <TextView
             android:id="@+id/textViewStart2"
@@ -38,59 +37,39 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
-    <TextView
-            android:id="@+id/loggedwelcome"
+    <Button
+            android:id="@+id/settingslogout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_weight="1"
-            android:text=""
-            android:textSize="22sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewStart2"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:text="LOG OUT"
+            android:width="120dp"
+            android:background="@color/purple_700"
+            android:layout_marginBottom="80dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     <LinearLayout
+            android:layout_margin="20dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            android:id="@+id/lllogin"
-            app:layout_constraintTop_toBottomOf="@+id/textViewStart2"
-            app:layout_constraintBottom_toBottomOf="parent">
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.0" android:id="@+id/linearLayout3">
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
-                    android:id="@+id/loginnametext"
+                    android:id="@+id/settingsnewpassoldpasstext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Login Name: "
-                    android:textSize="18sp"/>
-            <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:layout_weight="1"
-                    android:textAlignment="gravity"
-                    android:text="Name"
-                    android:ems="10"
-                    android:id="@+id/loginnameedit"/>
-        </LinearLayout>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <TextView
-                    android:id="@+id/loginpasstext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Password: "
-                    android:textSize="18sp"/>
+                    android:text="Old Password: "
+                    android:textSize="14sp"/>
             <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -99,16 +78,62 @@
                     android:textAlignment="gravity"
                     android:text=""
                     android:ems="10"
-                    android:id="@+id/loginpassedit"/>
+                    android:id="@+id/settingsnewpassoldpassedit"/>
         </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:id="@+id/settingsnewpassnewpassonetext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="New Password: "
+                    android:textSize="14sp"/>
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:layout_weight="1"
+                    android:textAlignment="gravity"
+                    android:text=""
+                    android:ems="10"
+                    android:id="@+id/settingsnewpassnewpassoneedit"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:id="@+id/settingsnewpassnewpasstwotext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Confirmation Password: "
+                    android:textSize="14sp"/>
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:layout_weight="1"
+                    android:textAlignment="gravity"
+                    android:text=""
+                    android:ems="10"
+                    android:id="@+id/settingsnewpassnewpasstwoedit"/>
+        </LinearLayout>
+        <Button
+                android:id="@+id/settingnewpassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Accept New Password"
+                android:background="@color/purple_700"/>
     </LinearLayout>
-
     <LinearLayout
-            android:id="@+id/linearLayoutmain"
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:orientation="vertical"
-            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -168,14 +193,5 @@
                     tools:ignore="ButtonStyle"/>
         </LinearLayout>
     </LinearLayout>
-    <Button
-            android:text="Ok"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/loginok"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

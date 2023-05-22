@@ -26,12 +26,10 @@ class TasksItemAdapter(
     private val taskid: TextView,
     private val taskclosed: CheckBox,
     private val context: Context,
-    private val dataset: List<Tasks> ) :
-    RecyclerView.Adapter<TasksItemAdapter.ItemViewHolder>()
-{
+    private val dataset: List<Tasks>
+) : RecyclerView.Adapter<TasksItemAdapter.ItemViewHolder>() {
 
-    class ItemViewHolder(private val view: View): RecyclerView.ViewHolder(view)
-    {
+    class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val textViewName: TextView = view.findViewById(R.id.taskname)
         val textViewEmail: TextView = view.findViewById(R.id.taskemail)
         val textViewTitle: TextView = view.findViewById(R.id.tasktasktitle)
@@ -43,8 +41,7 @@ class TasksItemAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_item_tasks, parent, false)
+        val adapterLayout = LayoutInflater.from(parent.context).inflate(R.layout.list_item_tasks, parent, false)
         return ItemViewHolder(adapterLayout)
     }
 
@@ -52,7 +49,7 @@ class TasksItemAdapter(
 
         val item = dataset[position]
         val closed: String
-        if(item.closed == 0){
+        if (item.closed == 0) {
             closed = "folyamatban"
         } else {
             closed = "lezárva"

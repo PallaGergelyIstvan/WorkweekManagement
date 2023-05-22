@@ -4,59 +4,61 @@ import com.example.workweekmanagement.model.Workers
 
 class DataSourceWorker {
 
-    fun loadMain(helper: DBHelperMain): String {
-
-        var db = helper.readableDatabase
-        var rs = db.rawQuery("SELECT * FROM SELF",null)
-        rs.moveToFirst()
-        return rs.getString(1)
-    }
-
     fun loadWorkers(helper: DBHelperWorkers): MutableList<Workers> {
-
         var db = helper.readableDatabase
-        var rs = db.rawQuery("SELECT * FROM worker CROSS JOIN task ON worker.Name=task.Name",null)
-        rs.moveToFirst()
-
+        var rs = db.rawQuery("SELECT * FROM worker", null)
         val workers = mutableListOf<Workers>()
         while (rs.moveToNext()) {
-            workers.add(Workers(rs.getInt(0), rs.getString(1), rs.getString(2),
-                rs.getString(3), rs.getInt(4), rs.getInt(5),
-                rs.getString(6), rs.getString(7), rs.getString(8),
-                rs.getString(9), rs.getString(10),
-                rs.getString(11), rs.getString(12), rs.getInt(13)))
+            workers.add(
+                Workers(
+                    rs.getInt(0), rs.getString(1), rs.getString(2),
+                    rs.getString(3), rs.getInt(4)
+                )
+            )
         }
-
         return workers
-
     }
 
-    fun inserWorker(helper: DBHelperWorkers, workername: String, workertitle: String, workerstart: String, workerend: String, workercomment: String, workerfinished: String){
-        helper.readableDatabase.execSQL("INSERT INTO worker (Name, Creator, TaskTitle, TimeStart, TimeEnd, Comment, Finished, Closed) VALUES" +
-                "('" + workername +
-                "', 'aaaa" +
-                "', '" + workertitle +
-                "', '" + workerstart +
-                "', '" + workerend +
-                "', '" + workercomment +
-                "', '" + workerfinished + "', 0);")
+    fun insertWorker(
+        helper: DBHelperWorkers,
+        workername: String,
+        workeremail: String,
+        password: String,
+        workerstrength: Int
+    ) {
+        helper.readableDatabase.execSQL(
+            "INSERT INTO worker (Name, Email, Password, Strength) VALUES" +
+                    "('" + workername +
+                    "', '" + workeremail +
+                    "', '" + DataEncryption().toHexString(DataEncryption().getSHA(password)) +
+                    "', '" + workerstrength + "');"
+        )
     }
 
-    fun updateWorker(helper: DBHelperWorkers, id: Int, workername: String, workertitle: String, workerstart: String, workerend: String, workercomment: String, workerfinished: String, closed: Int){
-        helper.readableDatabase.execSQL("UPDATE worker " +
-                "SET " +
-                "Name = '" + workername + "', " +
-                "TaskTitle = '" + workertitle + "', " +
-                "TimeStart = '" + workerstart + "', " +
-                "TimeEnd  = '" + workerend + "', " +
-                "Comment = '" + workercomment + "', " +
-                "Finished = '" + workerfinished + "', " +
-                "Closed = " + closed + " " +
-                "WHERE ID = " + id + ";")
+    fun updateWorker(helper: DBHelperWorkers, id: Int, workername: String, workeremail: String, workerstrength: Int) {
+        helper.readableDatabase.execSQL(
+            "UPDATE worker " +
+                    "SET " +
+                    "Name = '" + workername + "', " +
+                    "Email = '" + workeremail + "', " +
+                    "Strength = '" + workerstrength + "' " +
+                    "WHERE ID = " + id + ";"
+        )
     }
 
-    fun deleteWorker(helper: DBHelperWorkers, id: Int){
-        helper.readableDatabase.execSQL("DELETE FROM worker " +
-                "WHERE ID = " + id + ";")
+    fun updateWorkerPasswordChange(helper: DBHelperWorkers, id: Int, newpassword: String) {
+        helper.readableDatabase.execSQL(
+            "UPDATE worker " +
+                    "SET " +
+                    "Password = '" + DataEncryption().toHexString(DataEncryption().getSHA(newpassword)) + "' " +
+                    "WHERE ID = " + id + ";"
+        )
+    }
+
+    fun deleteWorker(helper: DBHelperWorkers, id: Int) {
+        helper.readableDatabase.execSQL(
+            "DELETE FROM worker " +
+                    "WHERE ID = " + id + ";"
+        )
     }
 }

@@ -14,5 +14,6 @@ class Tasks(
     val taskend: String,
     val comment: String,
     val finished: String,
-    val closed: Int)
-{}
+    val closed: Int
+) {
+}

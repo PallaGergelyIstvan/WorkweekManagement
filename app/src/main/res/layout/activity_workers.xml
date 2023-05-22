@@ -11,7 +11,6 @@
             android:id="@+id/textView99"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/purple_200"
             android:gravity="center"
             android:text="Made by: Gergely István Palla"
             android:textColor="@color/design_default_color_primary"
@@ -50,8 +49,7 @@
                 tools:layout_editor_absoluteX="0dp"
                 app:layout_constraintBottom_toTopOf="@+id/workerlinearLayout"/>
         <LinearLayout
-                android:layout_weight="0"
-                android:id="@+id/workerlinearLayout"
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="vertical"
@@ -69,8 +67,9 @@
                         android:id="@+id/button_menu_main_welcome"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="20sp"
                         android:layout_weight="1"
+                        android:singleLine="true"
+                        android:textSize="10sp"
                         android:text="Welcome"
                         tools:ignore="ButtonStyle"/>
 
@@ -78,8 +77,9 @@
                         android:id="@+id/button_menu_main_tasks"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20sp"
                         android:layout_weight="1"
+                        android:singleLine="true"
+                        android:textSize="10sp"
                         android:text="Tasks"
                         tools:ignore="ButtonStyle"/>
 
@@ -87,9 +87,28 @@
                         android:id="@+id/button_menu_main_workers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20sp"
                         android:layout_weight="1"
+                        android:singleLine="true"
+                        android:textSize="10sp"
                         android:text="Workers"
+                        tools:ignore="ButtonStyle"/>
+                <Button
+                        android:id="@+id/button_menu_main_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        android:textSize="10sp"
+                        android:text="Groups"
+                        tools:ignore="ButtonStyle"/>
+                <Button
+                        android:id="@+id/button_menu_main_setting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        android:textSize="10sp"
+                        android:text="Settings"
                         tools:ignore="ButtonStyle"/>
             </LinearLayout>
         </LinearLayout>
@@ -151,11 +170,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
-                    android:id="@+id/workerupdateworkerworkertitle"
+                    android:id="@+id/workerupdateworkerworkeremail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Worker Title: "
+                    android:text="Worker Email: "
                     android:textSize="18sp"/>
             <EditText
                     android:layout_width="wrap_content"
@@ -165,18 +184,18 @@
                     android:textAlignment="gravity"
                     android:text=""
                     android:ems="10"
-                    android:id="@+id/editworkerupdateworkerworkertitle"/>
+                    android:id="@+id/editworkerupdateworkerworkeremail"/>
         </LinearLayout>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
-                    android:id="@+id/workerupdateworkertimestart"
+                    android:id="@+id/workerupdateworkerstrength"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Start Time: "
+                    android:text="Worker Strength: "
                     android:textSize="18sp"/>
             <EditText
                     android:layout_width="wrap_content"
@@ -186,80 +205,50 @@
                     android:textAlignment="gravity"
                     android:text=""
                     android:ems="10"
-                    android:id="@+id/editworkerupdateworkertimestart"/>
+                    android:id="@+id/editworkerupdateworkerstrength"/>
         </LinearLayout>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
-                    android:id="@+id/workerupdateworkertimeend"
+                    android:id="@+id/workerupdateworkerworkerpasswordreset"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="End Time: "
-                    android:textSize="18sp"/>
-            <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="datetime"
-                    android:layout_weight="1"
-                    android:textAlignment="gravity"
-                    android:text=""
-                    android:ems="10"
-                    android:id="@+id/editworkerupdateworkertimeend"/>
-        </LinearLayout>
-        <TextView
-                android:id="@+id/workerupdateworkercomment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Comment: "
-                android:textSize="18sp"/>
-        <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textAlignment="gravity"
-                android:text=""
-                android:ems="16"
-                android:id="@+id/editworkerupdateworkertcomment"/>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <TextView
-                    android:id="@+id/workerupdateworkerfinished"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="status: "
-                    android:textSize="18sp"/>
-            <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:layout_weight="1"
-                    android:textAlignment="gravity"
-                    android:text=""
-                    android:ems="10"
-                    android:id="@+id/editworkerupdateworkerfinished"/>
-        </LinearLayout>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <TextView
-                    android:id="@+id/workerupdateworkerworkerclosed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Worker Closed: "
+                    android:text="Worker Password Reset: "
                     android:textSize="18sp"/>
             <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/workerupdateworkerworkerclosedcheckBox"
+                    android:id="@+id/workerupdateworkerworkerpasswordresetcheckBox"
                     android:layout_weight="1"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:id="@+id/workerupdateworkerworkerpasswordresetinfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:text="The reseted password: '12345678'"
+                    android:textSize="18sp"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:id="@+id/workerupdateworkerworkerpasswordselfinfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:text="changing your own password \nis done in the settings"
+                    android:textSize="18sp"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout

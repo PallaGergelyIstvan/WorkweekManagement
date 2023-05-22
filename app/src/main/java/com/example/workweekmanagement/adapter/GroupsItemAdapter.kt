@@ -9,76 +9,84 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.example.workweekmanagement.R
-import com.example.workweekmanagement.model.Tasks
+import com.example.workweekmanagement.model.Groups
 
 class GroupsItemAdapter(
     private val rv: RecyclerView,
     private val tuskupdatelinearlayout: LinearLayout,
     private val tuskupdatemenulinearlayout: LinearLayout,
-    private val taskrvll: LinearLayout,
-    private val buttonaddtask: Button,
-    private val taskname: EditText,
-    private val tasktitle: EditText,
-    private val taskstart: EditText,
-    private val taskend: EditText,
-    private val taskcomment: EditText,
-    private val taskfinished: EditText,
-    private val taskid: TextView,
-    private val taskclosed: CheckBox,
+    private val grouprvll: LinearLayout,
+    private val buttonaddgroup: Button,
+    private val groupid: TextView,
+    private val groupnameforgroup: TextView,
+    private val groupnameformember: TextView,
+    private val groupnameformemberreal: TextView,
+    private val groupmembernametext: TextView,
+    private val groupparent: TextView,
+    private val groupmemberid: TextView,
+    private val groupname: EditText,
+    private val groupmembername: EditText,
+    private val buttonaddgroupmember: Button,
     private val context: Context,
-    private val dataset: List<Tasks> ) :
-    RecyclerView.Adapter<TasksItemAdapter.ItemViewHolder>()
-{
+    private val dataset: List<Groups>
+) : RecyclerView.Adapter<GroupsItemAdapter.ItemViewHolder>() {
 
-    class ItemViewHolder(private val view: View): RecyclerView.ViewHolder(view)
-    {
-        val textViewName: TextView = view.findViewById(R.id.taskname)
-        val textViewEmail: TextView = view.findViewById(R.id.taskemail)
-        val textViewTitle: TextView = view.findViewById(R.id.tasktasktitle)
-        val textViewStart: TextView = view.findViewById(R.id.tasktaskstart)
-        val textViewEnd: TextView = view.findViewById(R.id.tasktaskend)
-        val textViewComment: TextView = view.findViewById(R.id.taskcomment)
-        val textViewFinished: TextView = view.findViewById(R.id.taskfinished)
-        val textViewClosed: TextView = view.findViewById(R.id.taskclosed)
+    class ItemViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+        val textViewMemberName: TextView = view.findViewById(R.id.groupgroupmember)
+        val textViewGroupName: TextView = view.findViewById(R.id.groupnameparent)
+        val linearLayoutRv: LinearLayout = view.findViewById(R.id.groupRvLinearLayout)
+        val linearLayoutRvParrent: LinearLayout = view.findViewById(R.id.groupRvLinearLayoutParent)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.list_item_tasks, parent, false)
+        val adapterLayout = LayoutInflater.from(parent.context).inflate(R.layout.list_item_groups, parent, false)
         return ItemViewHolder(adapterLayout)
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
 
         val item = dataset[position]
-        val closed: String
-        if(item.closed == 0){
-            closed = "folyamatban"
+        if (item.parent == 0) {
+            if (!item.groupmembername.equals(null)) {
+                holder.linearLayoutRvParrent.isGone = true
+                holder.linearLayoutRv.isVisible = true
+                holder.textViewMemberName.setText(item.groupmembername)
+            }
         } else {
-            closed = "lezárva"
+            holder.linearLayoutRvParrent.isVisible = true
+            holder.linearLayoutRv.isGone = true
+            holder.textViewGroupName.setText(item.groupname)
         }
-        holder.textViewName.setText(item.name)
-        holder.textViewEmail.setText(item.workeremail)
-        holder.textViewTitle.setText(item.tasktitle)
-        holder.textViewStart.setText(item.taskstart)
-        holder.textViewEnd.setText(item.taskend)
-        holder.textViewComment.setText(item.comment)
-        holder.textViewFinished.setText(item.finished)
-        holder.textViewClosed.setText(closed)
         holder.itemView.setOnClickListener {
-            buttonaddtask.isGone = true
-            taskrvll.isGone = true
+            buttonaddgroup.isGone = true
+            grouprvll.isGone = true
             tuskupdatelinearlayout.isVisible = true
             tuskupdatemenulinearlayout.isVisible = true
-            taskclosed.isChecked = item.closed != 0
-            taskid.setText(item.taskID.toString())
-            taskname.setText(item.name)
-            tasktitle.setText(item.tasktitle)
-            taskstart.setText(item.taskstart)
-            taskend.setText(item.taskend)
-            taskcomment.setText(item.comment)
-            taskfinished.setText(item.finished)
-            Toast.makeText(context, item.tasktitle, Toast.LENGTH_SHORT).show()
+            if (item.parent == 0) {
+                groupid.setText(item.groupID.toString())
+                groupnameforgroup.isGone = true
+                groupname.isGone = true
+                groupnameformember.isVisible = true
+                groupnameformemberreal.isVisible = true
+                groupnameformemberreal.setText(item.groupname)
+                groupmembernametext.isVisible = true
+                groupmembername.isVisible = true
+                groupmembername.setText(item.groupmembername)
+                buttonaddgroupmember.isGone = true
+            } else {
+                groupid.setText(item.groupID.toString())
+                groupnameforgroup.isVisible = true
+                groupname.isVisible = true
+                groupname.setText(item.groupname)
+                groupnameformember.isGone = true
+                groupnameformemberreal.isGone = true
+                groupnameformemberreal.setText(item.groupname)
+                groupmembernametext.isGone = true
+                groupmembername.isGone = true
+                buttonaddgroupmember.isVisible = true
+            }
+            groupparent.setText(item.parent.toString())
+            groupmemberid.setText(item.groupMemberID.toString())
         }
     }
 

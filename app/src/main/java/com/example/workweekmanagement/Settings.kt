@@ -5,47 +5,37 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import com.example.workweekmanagement.data.DBHelperMain
 import com.example.workweekmanagement.data.DataSource
 
-class MainActivity : AppCompatActivity() {
+class Settings : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_settings)
 
         var helper = DBHelperMain(applicationContext)
 
-        val loginname: EditText = findViewById(R.id.loginnameedit)
-        val loginpass: EditText = findViewById(R.id.loginpassedit)
+        val settingsnewpassoldpassedit: EditText = findViewById(R.id.settingsnewpassoldpassedit)
+        val settingsnewpassnewpassoneedit: EditText = findViewById(R.id.settingsnewpassnewpassoneedit)
+        val settingsnewpassnewpasstwoedit: EditText = findViewById(R.id.settingsnewpassnewpasstwoedit)
 
-        val loggedwelcome: TextView = findViewById(R.id.loggedwelcome)
+        val settingnewpassword: Button = findViewById(R.id.settingnewpassword)
+        val settingslogout: Button = findViewById(R.id.settingslogout)
 
-        val buttonok: Button = findViewById(R.id.loginok)
-
-        val lllogin: LinearLayout = findViewById(R.id.lllogin)
-        val linearlayoutmain: LinearLayout = findViewById(R.id.linearLayoutmain)
-
-        val mysself = DataSource().loadMain(helper)
-        if (!mysself.equals("0")){
-            lllogin.isGone = true
-            linearlayoutmain.isVisible = true
-            buttonok.isGone = true
-            loggedwelcome.isVisible = true
-            loggedwelcome.setText("Welcome " + mysself)
+        settingnewpassword.setOnClickListener {
+            if(settingsnewpassnewpassoneedit.text.toString().equals(settingsnewpassnewpasstwoedit.text.toString())){
+                DataSource().newPassword(helper, settingsnewpassoldpassedit.text.toString(), settingsnewpassnewpassoneedit.text.toString())
+                DataSource().logOut(helper)
+                Intent(this, MainActivity::class.java).also {
+                    startActivity(it)
+                }
+            }
         }
 
-        buttonok.setOnClickListener {
-            val myDataset = DataSource().loadLogin(helper, loginname.text.toString(), loginpass.text.toString())
-            if (!myDataset.equals("0")){
-                lllogin.isGone = true
-                linearlayoutmain.isVisible = true
-                buttonok.isGone = true
-                loggedwelcome.isVisible = true
-                loggedwelcome.setText("Welcome " + myDataset)
+        settingslogout.setOnClickListener {
+            DataSource().logOut(helper)
+            Intent(this, MainActivity::class.java).also {
+                startActivity(it)
             }
         }
 

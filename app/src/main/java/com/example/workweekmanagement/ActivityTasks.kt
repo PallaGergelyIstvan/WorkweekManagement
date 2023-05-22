@@ -19,11 +19,11 @@ class ActivityTasks : AppCompatActivity() {
         var helper = DBHelperTasks(applicationContext)
 
         val myDataset = DataSource().loadTasks(helper)
-        val rv : RecyclerView = findViewById(R.id.recycler_view_tasks)
+        val rv: RecyclerView = findViewById(R.id.recycler_view_tasks)
 
-        val taskupdatell : LinearLayout = findViewById(R.id.TaskUpdatelinearLayout)
-        val taskmenuupdatell : LinearLayout = findViewById(R.id.TaskUpdateMenulinearLayout)
-        val taskrvll : LinearLayout = findViewById(R.id.linearLayout2)
+        val taskupdatell: LinearLayout = findViewById(R.id.TaskUpdatelinearLayout)
+        val taskmenuupdatell: LinearLayout = findViewById(R.id.TaskUpdateMenulinearLayout)
+        val taskrvll: LinearLayout = findViewById(R.id.linearLayout2)
 
         val taskname: EditText = findViewById(R.id.edittaskupdatetaskname)
         val tasktitle: EditText = findViewById(R.id.edittaskupdatetasktasktitle)
@@ -39,7 +39,23 @@ class ActivityTasks : AppCompatActivity() {
         val buttondelete: Button = findViewById(R.id.updatetaskdeletebutton)
         val buttoncancel: Button = findViewById(R.id.updatetaskcancelbutton)
 
-        rv.adapter = TasksItemAdapter(rv, taskupdatell, taskmenuupdatell, taskrvll, buttonaddtask, taskname, tasktitle, taskstart, taskend, taskcomment, taskfinished, taskid, taskclosed, this, myDataset)
+        rv.adapter = TasksItemAdapter(
+            rv,
+            taskupdatell,
+            taskmenuupdatell,
+            taskrvll,
+            buttonaddtask,
+            taskname,
+            tasktitle,
+            taskstart,
+            taskend,
+            taskcomment,
+            taskfinished,
+            taskid,
+            taskclosed,
+            this,
+            myDataset
+        )
 
         rv.setHasFixedSize(false)
 
@@ -49,28 +65,24 @@ class ActivityTasks : AppCompatActivity() {
             }
         }
 
-        val button1: Button = findViewById(R.id.button_menu_main_welcome)
-        button1.setOnClickListener {
-            Intent(this, MainActivity::class.java).also {
-                startActivity(it)
-            }
-        }
-
-        val button3: Button = findViewById(R.id.button_menu_main_workers)
-        button3.setOnClickListener {
-            Intent(this, ActivityWorkers::class.java).also {
-                startActivity(it)
-            }
-        }
-
         buttonok.setOnClickListener {
             val closed: Int
-            if(taskclosed.isChecked) {
+            if (taskclosed.isChecked) {
                 closed = 1
             } else {
                 closed = 0
             }
-            DataSource().updateTask(helper, Integer.parseInt(taskid.text.toString()), taskname.text.toString(), tasktitle.text.toString(), taskstart.text.toString(), taskend.text.toString(), taskcomment.text.toString(), taskfinished.text.toString(), closed)
+            DataSource().updateTask(
+                helper,
+                Integer.parseInt(taskid.text.toString()),
+                taskname.text.toString(),
+                tasktitle.text.toString(),
+                taskstart.text.toString(),
+                taskend.text.toString(),
+                taskcomment.text.toString(),
+                taskfinished.text.toString(),
+                closed
+            )
             taskrvll.isVisible = true
             buttonaddtask.isVisible = true
             taskupdatell.isGone = true
@@ -97,5 +109,41 @@ class ActivityTasks : AppCompatActivity() {
             taskupdatell.isGone = true
             taskmenuupdatell.isGone = true
         }
+
+        val button1: Button = findViewById(R.id.button_menu_main_welcome)
+        button1.setOnClickListener {
+            Intent(this, MainActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        val button2: Button = findViewById(R.id.button_menu_main_tasks)
+        button2.setOnClickListener {
+            Intent(this, ActivityTasks::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        val button3: Button = findViewById(R.id.button_menu_main_workers)
+        button3.setOnClickListener {
+            Intent(this, ActivityWorkers::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        val button4: Button = findViewById(R.id.button_menu_main_group)
+        button4.setOnClickListener {
+            Intent(this, ActivityGroups::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        val button5: Button = findViewById(R.id.button_menu_main_setting)
+        button5.setOnClickListener {
+            Intent(this, Settings::class.java).also {
+                startActivity(it)
+            }
+        }
+
     }
 }

@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class DBHelperTasks(context: Context) : SQLiteOpenHelper(context, "WORKDB", null, 1) {
+class DBHelperGroups(context: Context) : SQLiteOpenHelper(context, "WORKDB", null, 1) {
     override fun onCreate(db: SQLiteDatabase?) {
         TODO("Not yet implemented")
     }

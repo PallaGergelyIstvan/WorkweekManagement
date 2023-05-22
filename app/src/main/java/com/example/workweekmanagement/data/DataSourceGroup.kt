@@ -1,80 +1,109 @@
 package com.example.workweekmanagement.data
 
-import com.example.workweekmanagement.model.Tasks
 import com.example.workweekmanagement.model.Workers
+import com.example.workweekmanagement.model.Groups
 
 class DataSourceGroup {
 
-    fun loadMain(helper: DBHelperMain): String {
-
+    fun loadGroups(helper: DBHelperGroups): MutableList<Groups> {
         var db = helper.readableDatabase
-        var rs = db.rawQuery("SELECT * FROM SELF",null)
-        rs.moveToFirst()
-        return rs.getString(1)
-    }
-
-    fun loadTasks(helper: DBHelperTasks): MutableList<Tasks> {
-
-        var db = helper.readableDatabase
-        var rs = db.rawQuery("SELECT * FROM worker CROSS JOIN task ON worker.Name=task.Name",null)
-        rs.moveToFirst()
-
-        val tasks = mutableListOf<Tasks>()
-        while (rs.moveToNext()) {
-            tasks.add(Tasks(rs.getInt(0), rs.getString(1), rs.getString(2),
-                rs.getString(3), rs.getInt(4), rs.getInt(5),
-                rs.getString(6), rs.getString(7), rs.getString(8),
-                rs.getString(9), rs.getString(10),
-                rs.getString(11), rs.getString(12), rs.getInt(13)))
+        var rsg = db.rawQuery(
+            "SELECT * FROM workergroup", null
+        )
+        val groups = mutableListOf<Groups>()
+        while (rsg.moveToNext()) {
+                groups.add(
+                    Groups(
+                        1,
+                        rsg.getInt(0),
+                        rsg.getString(1),
+                        "",
+                        0
+                    )
+                )
+            var rsw = db.rawQuery(
+                "SELECT * FROM groupmember WHERE GroupName LIKE '" + rsg.getString(1) + "'", null
+            )
+            while (rsw.moveToNext()) {
+                groups.add(
+                    Groups(
+                        0,
+                        rsg.getInt(0),
+                        rsg.getString(1),
+                        rsw.getString(2),
+                        rsw.getInt(0)
+                    )
+                )
+            }
         }
-
-        return tasks
-
+        return groups
     }
 
 
     fun loadWorkers(helper: DBHelperWorkers): MutableList<Workers> {
+        val workers = mutableListOf<Workers>()
+        return workers;
+    }
 
-        var db = helper.readableDatabase
-        var rs = db.rawQuery("SELECT * FROM worker",null)
-        rs.moveToFirst()
-
-        return mutableListOf<Workers>(
-            Workers(rs.getString(1), rs.getString(1), "asd", "asd", "asd"),
-            Workers("asd", "asd", "asd", "asd", "asd"),
-            Workers("asd", "asd", "asd", "asd", "asd"),
-            Workers("asd", "asd", "asd", "asd", "asd"),
-            Workers("asd", "asd", "asd", "asd", "asd"),
-            Workers("asd", "asd", "asd", "asd", "asd"),
+    fun insertGroup(
+    helper: DBHelperGroups,
+    groupname: String
+    ) {
+        helper.readableDatabase.execSQL(
+            "INSERT INTO workergroup (GroupName) VALUES" +
+                    "('" + groupname + "');"
         )
     }
 
-    fun inserTask(helper: DBHelperTasks, taskname: String, tasktitle: String, taskstart: String, taskend: String, taskcomment: String, taskfinished: String){
-        helper.readableDatabase.execSQL("INSERT INTO task (Name, Creator, TaskTitle, TimeStart, TimeEnd, Comment, Finished, Closed) VALUES" +
-                "('" + taskname +
-                "', 'aaaa" +
-                "', '" + tasktitle +
-                "', '" + taskstart +
-                "', '" + taskend +
-                "', '" + taskcomment +
-                "', '" + taskfinished + "', 0);")
+    fun inserGroupMember(
+        helper: DBHelperGroups,
+        groupname: String,
+        groupmembername: String
+    ) {
+        helper.readableDatabase.execSQL(
+            "INSERT INTO groupmember (GroupName, Name) VALUES" +
+                    "('" + groupname +
+                    "', '" + groupmembername + "');"
+        )
     }
 
-    fun updateTask(helper: DBHelperTasks, id: Int, taskname: String, tasktitle: String, taskstart: String, taskend: String, taskcomment: String, taskfinished: String, closed: Int){
-        helper.readableDatabase.execSQL("UPDATE task " +
-                "SET " +
-                "Name = '" + taskname + "', " +
-                "TaskTitle = '" + tasktitle + "', " +
-                "TimeStart = '" + taskstart + "', " +
-                "TimeEnd  = '" + taskend + "', " +
-                "Comment = '" + taskcomment + "', " +
-                "Finished = '" + taskfinished + "', " +
-                "Closed = " + closed + " " +
-                "WHERE ID = " + id + ";")
+    fun updateGroupMember(
+        helper: DBHelperGroups,
+        groupmemberid: Int,
+        groupmembername: String
+    ) {
+        helper.readableDatabase.execSQL(
+            "UPDATE groupmember " +
+                    "SET " +
+                    "Name = '" + groupmembername + "' " +
+                    "WHERE ID = " + groupmemberid + ";"
+        )
     }
 
-    fun deleteTask(helper: DBHelperTasks, id: Int){
-        helper.readableDatabase.execSQL("DELETE FROM task " +
-                "WHERE ID = " + id + ";")
+    fun updateGroup(
+        helper: DBHelperGroups,
+        id: Int,
+        groupname: String
+    ) {
+        helper.readableDatabase.execSQL(
+            "UPDATE workergroup " +
+                    "SET " +
+                    "GroupName = '" + groupname + "' " +
+                    "WHERE ID = " + id + ";"
+        )
+    }
+
+    fun deleteGroupMemeber(helper: DBHelperGroups, groupmemberid: Int) {
+        helper.readableDatabase.execSQL(
+            "DELETE FROM groupmember " +
+                    "WHERE ID = " + groupmemberid + ";"
+        )
+    }
+
+    fun deleteGroup(helper: DBHelperGroups, id: Int) {
+        helper.readableDatabase.execSQL(
+            "DELETE FROM workergroup " +
+                    "WHERE ID = " + id + ";"
+        )
     }
 }

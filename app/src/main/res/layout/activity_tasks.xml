@@ -11,7 +11,6 @@
             android:id="@+id/textView99"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/purple_200"
             android:gravity="center"
             android:text="Made by: Gergely István Palla"
             android:textColor="@color/design_default_color_primary"
@@ -50,7 +49,6 @@
                 tools:layout_editor_absoluteX="0dp"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout"/>
         <LinearLayout
-                android:layout_weight="0"
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -69,8 +67,9 @@
                         android:id="@+id/button_menu_main_welcome"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="20sp"
                         android:layout_weight="1"
+                        android:singleLine="true"
+                        android:textSize="10sp"
                         android:text="Welcome"
                         tools:ignore="ButtonStyle"/>
 
@@ -78,8 +77,9 @@
                         android:id="@+id/button_menu_main_tasks"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20sp"
                         android:layout_weight="1"
+                        android:singleLine="true"
+                        android:textSize="10sp"
                         android:text="Tasks"
                         tools:ignore="ButtonStyle"/>
 
@@ -87,9 +87,28 @@
                         android:id="@+id/button_menu_main_workers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20sp"
                         android:layout_weight="1"
+                        android:singleLine="true"
+                        android:textSize="10sp"
                         android:text="Workers"
+                        tools:ignore="ButtonStyle"/>
+                <Button
+                        android:id="@+id/button_menu_main_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        android:textSize="10sp"
+                        android:text="Groups"
+                        tools:ignore="ButtonStyle"/>
+                <Button
+                        android:id="@+id/button_menu_main_setting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        android:textSize="10sp"
+                        android:text="Settings"
                         tools:ignore="ButtonStyle"/>
             </LinearLayout>
         </LinearLayout>

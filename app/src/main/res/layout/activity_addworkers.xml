@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ActivityAddTasks">
+        tools:context=".ActivityAddWorkers">
 
     <LinearLayout
             android:layout_margin="20dp"
@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
-                    android:id="@+id/taskaddtaskname"
+                    android:id="@+id/workeraddworkername"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -33,18 +33,18 @@
                     android:textAlignment="gravity"
                     android:text="Name"
                     android:ems="10"
-                    android:id="@+id/edittaskaddtaskname"/>
+                    android:id="@+id/editworkeraddworkername"/>
         </LinearLayout>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
-                    android:id="@+id/taskaddtasktasktitle"
+                    android:id="@+id/workeraddworkerworkeremail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Task Title: "
+                    android:text="Worker Email: "
                     android:textSize="18sp"/>
             <EditText
                     android:layout_width="wrap_content"
@@ -52,86 +52,56 @@
                     android:inputType="text"
                     android:layout_weight="1"
                     android:textAlignment="gravity"
-                    android:text="Task Title"
+                    android:text="Worker Email"
                     android:ems="10"
-                    android:id="@+id/edittaskaddtasktasktitle"/>
+                    android:id="@+id/editworkeraddworkerworkeremail"/>
         </LinearLayout>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
-                    android:id="@+id/taskaddtasktimestart"
+                    android:id="@+id/workeraddworkerstrength"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Start Time: "
+                    android:text="Worker Strength: "
                     android:textSize="18sp"/>
             <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:inputType="datetime"
+                    android:inputType="number"
                     android:layout_weight="1"
                     android:textAlignment="gravity"
-                    android:text="Start Time"
+                    android:text="strength"
                     android:ems="10"
-                    android:id="@+id/edittaskaddtasktimestart"/>
+                    android:id="@+id/editworkeraddworkerstrength"/>
         </LinearLayout>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
-                    android:id="@+id/taskaddtasktimeend"
+                    android:id="@+id/workerupdateworkerworkerpasswordresetinfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:layout_weight="1"
-                    android:text="End Time: "
+                    android:text="The password: '12345678'"
                     android:textSize="18sp"/>
-            <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="datetime"
-                    android:layout_weight="1"
-                    android:textAlignment="gravity"
-                    android:text="End Time"
-                    android:ems="10"
-                    android:id="@+id/edittaskaddtasktimeend"/>
         </LinearLayout>
-        <TextView
-                android:id="@+id/taskaddtaskcomment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Comment: "
-                android:textSize="18sp"/>
-        <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textAlignment="gravity"
-                android:text="comment"
-                android:ems="16"
-                android:id="@+id/edittaskaddtasktcomment"/>
         <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
-                    android:id="@+id/taskaddtaskfinished"
+                    android:id="@+id/workerupdateworkerworkerpasswordselfinfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:layout_weight="1"
-                    android:text="status: "
+                    android:text="changing your own password \nis done in the settings"
                     android:textSize="18sp"/>
-            <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:layout_weight="1"
-                    android:textAlignment="gravity"
-                    android:text="status"
-                    android:ems="10"
-                    android:id="@+id/edittaskaddtaskfinished"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -150,7 +120,7 @@
                 tools:ignore="UselessParent">
 
             <Button
-                    android:id="@+id/addtaskokbutton"
+                    android:id="@+id/addworkerokbutton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -158,7 +128,7 @@
                     tools:ignore="ButtonStyle"/>
 
             <Button
-                    android:id="@+id/addtaskcancelbutton"
+                    android:id="@+id/addworkercancelbutton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -168,6 +138,5 @@
     </LinearLayout>
 
 
+
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-

@@ -26,7 +26,15 @@ class ActivityAddTasks : AppCompatActivity() {
 
         val buttonok: Button = findViewById(R.id.addtaskokbutton)
         buttonok.setOnClickListener {
-            DataSource().inserTask(helper, taskname.text.toString(), tasktitle.text.toString(), taskstart.text.toString(), taskend.text.toString(), taskcomment.text.toString(), taskfinished.text.toString())
+            DataSource().insertTask(
+                helper,
+                taskname.text.toString(),
+                tasktitle.text.toString(),
+                taskstart.text.toString(),
+                taskend.text.toString(),
+                taskcomment.text.toString(),
+                taskfinished.text.toString()
+            )
             Intent(this, ActivityTasks::class.java).also {
                 startActivity(it)
             }

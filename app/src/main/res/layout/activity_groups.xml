@@ -8,10 +8,9 @@
         tools:context=".ActivityGroups">
 
     <TextView
-            android:id="@+id/textView99"
+            android:id="@+id/textView199"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/purple_200"
             android:gravity="center"
             android:text="Made by: Gergely István Palla"
             android:textColor="@color/design_default_color_primary"
@@ -36,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:id="@+id/linearLayout2">
+            android:id="@+id/grouplinearLayout2">
         <androidx.recyclerview.widget.RecyclerView
                 android:layout_weight="1"
                 android:visibility="visible"
@@ -48,9 +47,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
                 tools:layout_editor_absoluteX="0dp"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout"/>
+                app:layout_constraintBottom_toTopOf="@+id/grouplinearLayout"/>
         <LinearLayout
-                android:layout_weight="0"
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -69,8 +67,9 @@
                         android:id="@+id/button_menu_main_welcome"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="20sp"
                         android:layout_weight="1"
+                        android:singleLine="true"
+                        android:textSize="10sp"
                         android:text="Welcome"
                         tools:ignore="ButtonStyle"/>
 
@@ -78,8 +77,9 @@
                         android:id="@+id/button_menu_main_tasks"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20sp"
                         android:layout_weight="1"
+                        android:singleLine="true"
+                        android:textSize="10sp"
                         android:text="Tasks"
                         tools:ignore="ButtonStyle"/>
 
@@ -87,9 +87,28 @@
                         android:id="@+id/button_menu_main_workers"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20sp"
                         android:layout_weight="1"
+                        android:singleLine="true"
+                        android:textSize="10sp"
                         android:text="Workers"
+                        tools:ignore="ButtonStyle"/>
+                <Button
+                        android:id="@+id/button_menu_main_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        android:textSize="10sp"
+                        android:text="Groups"
+                        tools:ignore="ButtonStyle"/>
+                <Button
+                        android:id="@+id/button_menu_main_setting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:singleLine="true"
+                        android:textSize="10sp"
+                        android:text="Settings"
                         tools:ignore="ButtonStyle"/>
             </LinearLayout>
         </LinearLayout>
@@ -101,8 +120,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
-            android:id="@+id/GroupUpdatelinearLayout"
-            app:layout_constraintBottom_toTopOf="@+id/GroupUpdateMenulinearLayout"
+            android:id="@+id/groupUpdatelinearLayout"
+            app:layout_constraintBottom_toTopOf="@+id/groupUpdateMenulinearLayout"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
@@ -134,7 +153,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Name: "
+                    android:visibility="gone"
+                    android:text="Group Name: "
                     android:textSize="18sp"/>
             <EditText
                     android:layout_width="wrap_content"
@@ -142,6 +162,7 @@
                     android:inputType="textPersonName"
                     android:layout_weight="1"
                     android:textAlignment="gravity"
+                    android:visibility="gone"
                     android:text=""
                     android:ems="10"
                     android:id="@+id/editgroupupdategroupname"/>
@@ -151,11 +172,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             <TextView
-                    android:id="@+id/groupupdategroupgrouptitle"
+                    android:id="@+id/groupupdategroupgroupmembergroupnamefirst"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Group Title: "
+                    android:visibility="gone"
+                    android:text="Group Name: "
+                    android:textSize="18sp"/>
+            <TextView
+                    android:id="@+id/groupupdategroupgroupmembergroupnamereal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    android:text=""
+                    android:textSize="18sp"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <TextView
+                    android:id="@+id/groupupdategroupgroupmembername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:visibility="gone"
+                    android:text="Member Name: "
                     android:textSize="18sp"/>
             <EditText
                     android:layout_width="wrap_content"
@@ -163,107 +206,48 @@
                     android:inputType="text"
                     android:layout_weight="1"
                     android:textAlignment="gravity"
+                    android:visibility="gone"
                     android:text=""
                     android:ems="10"
-                    android:id="@+id/editgroupupdategroupgrouptitle"/>
-        </LinearLayout>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <TextView
-                    android:id="@+id/groupupdategrouptimestart"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Start Time: "
-                    android:textSize="18sp"/>
-            <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="datetime"
-                    android:layout_weight="1"
-                    android:textAlignment="gravity"
-                    android:text=""
-                    android:ems="10"
-                    android:id="@+id/editgroupupdategrouptimestart"/>
-        </LinearLayout>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <TextView
-                    android:id="@+id/groupupdategrouptimeend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="End Time: "
-                    android:textSize="18sp"/>
-            <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="datetime"
-                    android:layout_weight="1"
-                    android:textAlignment="gravity"
-                    android:text=""
-                    android:ems="10"
-                    android:id="@+id/editgroupupdategrouptimeend"/>
-        </LinearLayout>
-        <TextView
-                android:id="@+id/groupupdategroupcomment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Comment: "
-                android:textSize="18sp"/>
-        <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:textAlignment="gravity"
-                android:text=""
-                android:ems="16"
-                android:id="@+id/editgroupupdategrouptcomment"/>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <TextView
-                    android:id="@+id/groupupdategroupfinished"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="status: "
-                    android:textSize="18sp"/>
-            <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:layout_weight="1"
-                    android:textAlignment="gravity"
-                    android:text=""
-                    android:ems="10"
-                    android:id="@+id/editgroupupdategroupfinished"/>
-        </LinearLayout>
-        <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <TextView
-                    android:id="@+id/groupupdategroupgroupclosed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Group Closed: "
-                    android:textSize="18sp"/>
-            <CheckBox
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/groupupdategroupgroupclosedcheckBox"
-                    android:layout_weight="1"/>
+                    android:id="@+id/editgroupupdategroupgroupmembername"/>
         </LinearLayout>
     </LinearLayout>
+    <Button
+            android:id="@+id/groupaddgroupmemberbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="adding a new groupmember to this group"
+            android:width="120dp"
+            android:visibility="gone"
+            android:background="@color/purple_700_32"
+            android:layout_marginBottom="80dp"
+            android:layout_marginRight="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+            android:id="@+id/groupupdategroupgroupparent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:text=""
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    <TextView
+            android:id="@+id/groupupdategroupgroupmemberid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:visibility="gone"
+            android:text=""
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
     <LinearLayout
-            android:id="@+id/GroupUpdateMenulinearLayout"
+            android:id="@+id/groupUpdateMenulinearLayout"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:orientation="vertical"
